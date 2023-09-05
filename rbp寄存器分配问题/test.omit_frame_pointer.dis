@@ -1,0 +1,44 @@
+
+test.o:	file format mach-o 64-bit x86-64
+
+Disassembly of section __TEXT,__text:
+
+0000000100003f30 <_alloc>:
+100003f30: 48 83 ec 18                 	subq	$24, %rsp
+100003f34: 89 7c 24 14                 	movl	%edi, 20(%rsp)
+100003f38: 89 74 24 10                 	movl	%esi, 16(%rsp)
+100003f3c: 8b 44 24 14                 	movl	20(%rsp), %eax
+100003f40: 03 44 24 10                 	addl	16(%rsp), %eax
+100003f44: 89 44 24 0c                 	movl	%eax, 12(%rsp)
+100003f48: 8b 74 24 0c                 	movl	12(%rsp), %esi
+100003f4c: 48 8d 3d 4b 00 00 00        	leaq	75(%rip), %rdi          ## 0x100003f9e <dyld_stub_binder+0x100003f9e>
+100003f53: b0 00                       	movb	$0, %al
+100003f55: e8 22 00 00 00              	callq	0x100003f7c <dyld_stub_binder+0x100003f7c>
+100003f5a: 48 83 c4 18                 	addq	$24, %rsp
+100003f5e: c3                          	retq
+100003f5f: 90                          	nop
+
+0000000100003f60 <_main>:
+100003f60: 50                          	pushq	%rax
+100003f61: c7 44 24 04 00 00 00 00     	movl	$0, 4(%rsp)
+100003f69: bf 05 00 00 00              	movl	$5, %edi
+100003f6e: be 08 00 00 00              	movl	$8, %esi
+100003f73: e8 b8 ff ff ff              	callq	0x100003f30 <_alloc>
+100003f78: 31 c0                       	xorl	%eax, %eax
+100003f7a: 59                          	popq	%rcx
+100003f7b: c3                          	retq
+
+Disassembly of section __TEXT,__stubs:
+
+0000000100003f7c <__stubs>:
+100003f7c: ff 25 7e 40 00 00           	jmpq	*16510(%rip)            ## 0x100008000 <dyld_stub_binder+0x100008000>
+
+Disassembly of section __TEXT,__stub_helper:
+
+0000000100003f84 <__stub_helper>:
+100003f84: 4c 8d 1d 7d 40 00 00        	leaq	16509(%rip), %r11       ## 0x100008008 <__dyld_private>
+100003f8b: 41 53                       	pushq	%r11
+100003f8d: ff 25 6d 00 00 00           	jmpq	*109(%rip)              ## 0x100004000 <dyld_stub_binder+0x100004000>
+100003f93: 90                          	nop
+100003f94: 68 00 00 00 00              	pushq	$0
+100003f99: e9 e6 ff ff ff              	jmp	0x100003f84 <__stub_helper>
